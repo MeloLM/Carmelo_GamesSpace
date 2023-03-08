@@ -9,6 +9,10 @@ class ConsoleController extends Controller
 {
     //CRUD - CREATE READ UPTADE DELETE
 
+    public function __construct(){
+        $this->middleware('auth')->except('index', 'show');
+    }
+
     /**
      * Display a listing of the resource.
      */
