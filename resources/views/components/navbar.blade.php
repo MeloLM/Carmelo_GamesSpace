@@ -10,10 +10,16 @@
           <a class="nav-link active" aria-current="page" href="{{route('homepage')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link disabled " href="#">Link</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('createGame')}}">Add Games</a>
+          <a class="nav-link" href="{{route('console.index')}}">Console</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{{route('console.create')}}">Add Console</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{{route('createGame')}}">Add Games</a>
         </li>
       </ul>
       

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\ConsoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,9 @@ Route::post('/games/store', [GameController::class, 'store'])->name('games.store
 //ROTTE LOG
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::get('/register', [UserController::class, 'register'])->name('register');
+
+//ROTTE CONSOLE
+Route::get('/console/create', [ConsoleController::class, 'create'])->name('console.create');
+Route::post('console/store', [ConsoleController::class, 'store'])->name('console.store');
+Route::get('/console/index', [ConsoleController::class, 'index'])->name('console.index');
+Route::get('/console/show/{console}', [ConsoleController::class, 'show'])->name('console.show');
