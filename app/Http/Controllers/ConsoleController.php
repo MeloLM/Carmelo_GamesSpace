@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Console;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConsoleController extends Controller
 {
@@ -41,6 +42,7 @@ class ConsoleController extends Controller
             'brand' => $request->brand,
             'logo' => $request->file('logo')->store('public/logos'),
             'description' => $request->description,
+            'user_id'=> Auth::user()->id,
         ]);
 
         return redirect(route('homepage'))->with('consoleCreated', 'Hai creato con successo una console!');
@@ -59,7 +61,11 @@ class ConsoleController extends Controller
      */
     public function edit(Console $console)
     {
-        //
+        if ($console->user_id != Auth::id()){
+            return redirect(route('homepage'))->with('accessDenied','You are not authorized!');
+        }
+
+        return view('console.edit', compact('console'));
     }
 
     /**
@@ -67,7 +73,22 @@ class ConsoleController extends Controller
      */
     public function update(Request $request, Console $console)
     {
-        //
+        if($request->logo){
+            $sell->update([
+                'name'=>$request->name,
+                'brand'=>$request->brand,
+                'description'=>$request->description,
+                'logo'=>$request->file('logo')->store('public/foto'),
+            ]);
+        }else{
+            $sell->update([
+                'name'=>$request->name,
+                'brand'=>$request->brand,
+                'description'->$request->description,
+            ]);
+        }
+
+        return redirect(route('console.index'))->with('houseUpdated', 'Hai modificato annuncio');
     }
 
     /**
@@ -75,6 +96,8 @@ class ConsoleController extends Controller
      */
     public function destroy(Console $console)
     {
-        //
+        $console->delete();
+
+        return redirect(route('console.index'))->with('consoleDeleted', 'Hai cancellato annuncio');
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Project 06 Laravel</title>
+    <title>Game Space</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>

@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar'
     ];
 
     /**
@@ -41,4 +42,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function consoles(){
+        //UN UTENTE HA  PIU' CONSOLE
+        return $this->hasMany(Console::class);
+    }
+
+    //UN UTENTE E' RELAZIONATO A PIU' GIOCHI
+    public function games(){
+        return $this->hasMany(Game::class);
+    }
+
 }

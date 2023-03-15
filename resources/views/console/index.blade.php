@@ -17,6 +17,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+    @if (session('condoleDeleted'))
+    <div class="alert alert-danger alert-dismissible fade show border-start border-end" role="alert">
+        {{ session('condoleDeleted') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
 
     <div class="container">
         <div class="row justify-content-center">
@@ -31,8 +37,8 @@
                     <div class="p-1 text-dark" >
                         <h5>{{$console->name}}</h5>
                         <h6 class="fst-italic text-muted">{{$console->brand}}</h6>
-                        <p class="card-text   fs-6">by Carmelo La Mantia</p>
-                        <a href="{{route('console.show', compact('console'))}}" class="stretched-link text-danger">Leggi di più</a>
+                        <p class="card-text   fs-6">by {{$console->user->name}}</p>
+                        <a href="{{route('console.show', compact('console'))}}" class="btn btn-dark">More info...</a>
                     </div>
                 </div>
             </div>

@@ -1,37 +1,36 @@
 
 <x-layout>
-    
+
     <div class="container-fluid bg-dark text-white d-flex justify-content-center">
         <div class="row p-3 ">
             <div class="col-12  ">
                 <h2>
-                    Details Console:
+                   Details game:
                 </h2>
             </div>
             
         </div>
     </div>
-    
-    
+
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-5">
                 <div class="card custom-card mt-5">
-                    @if (!$console->logo)
+                @if (!$game->cover)
                     <img src="https://picsum.photos/300/200" class="img-fluid card-img-top" alt="...">
-                    @else
-                    <img src="{{Storage::url($console->logo)}}" class="img-fluid card-img-top" alt="...">
-                    @endif  
+                @else
+                    <img src="{{Storage::url($game->cover)}}" class="img-fluid card-img-top" alt="...">
+                @endif  
                     <div class="p-1 text-dark" >
-                        <h5>{{$console->name}}</h5>
-                        <h6 class="fst-italic text-muted">{{$console->brand}}</h6>
-                        <p class="card-text fs-6">by Carmelo La Mantia</p>
-                        <p class="">{{$console->description}}</p>
-                        <a href="{{route('console.index')}}" class="btn btn-dark">Go Back</a>
+                        <h5>{{$game->title}}</h5>
+                        <h6 class="fst-italic text-muted">{{$game->product}}</h6>
+                        <h6 class="text-muted">{{$game->price}} €</h6>
+                        <p class="card-text fs-6">by {{$game->user->name}}</p>
+                        <a href="{{route('homepage')}}" class="btn btn-primary">Back</a>
 
                         @if (Auth::user() && Auth::id() == $console->user_id)
-                            <a href="{{route('console.edit', compact('console'))}}" class="btn btn-warning ms-5 ">Edit</a>
-                            <form action="{{route('console.destroy', compact('console'))}}" method="POST" class="d-inline">
+                            <a href="{{route('game.edit', compact('game'))}}" class="btn btn-warning ms-5 ">Edit</a>
+                            <form action="{{route('game.destroy', compact('game'))}}" method="POST" class="d-inline">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -42,5 +41,5 @@
             </div>
         </div>
     </div>
-    
+
 </x-layout>

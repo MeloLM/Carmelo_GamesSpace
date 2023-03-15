@@ -13,6 +13,11 @@ class Console extends Model
         'name',
         'logo',
         'brand',
-        'description'
+        'description',
+        'user_id',
     ];
+    public function user(){
+        //UN UTENTE HA PIU' CONSOLE
+        return $this->belongsTo(User::class);
+    }
 }

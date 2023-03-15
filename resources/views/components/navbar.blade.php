@@ -10,10 +10,7 @@
           <a class="nav-link active" aria-current="page" href="{{route('homepage')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled " href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('console.index')}}">Console</a>
+          <a class="nav-link active" href="{{route('console.index')}}">Console</a>
         </li>
         <li class="nav-item">
           <a class="nav-link " href="{{route('console.create')}}">Add Console</a>
@@ -24,14 +21,15 @@
       </ul>
       
       
-      <ul class="navbar-nav ms-5 me-auto mb-2 mb-lg-0 ">
+      <ul class="navbar-nav ms-5 mb-2 mb-lg-0 ">
         @auth
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Benvenuto {{Auth::user()->name}}
+            Benvenuto {{Auth::user()->name}} 
+           
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Profilo</a></li>
+            <li><a class="dropdown-item" href="{{route('profile')}}">Profilo</a></li>
             <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.querySelector('#form-logout').submit();" >Esci</a></li>
             <form id="form-logout" action="{{route('logout')}}" method="POST" class="d-none">@csrf</form>
           </ul>

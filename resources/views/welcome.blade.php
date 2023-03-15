@@ -4,15 +4,29 @@
         <div class="row p-3 ">
             <div class="col-12  ">
                 <h2>
-                    Welcome to GamesSpace
+                    Welcome to GamesSpace games
                 </h2>
             </div>
             
         </div>
     </div>
+    
     @if (session('gameCreated'))
     <div class="alert alert-success alert-dismissible fade show border-start border-end" role="alert">
         {{ session('gameCreated') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
+    @if (session('gameDeleted'))
+    <div class="alert alert-danger alert-dismissible fade show border-start border-end" role="alert">
+        {{ session('gameDeleted') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    @if (session('accessDenied'))
+    <div class="alert alert-danger alert-dismissible fade show border-start border-end" role="alert">
+        {{ session('accessDenied') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
@@ -42,8 +56,9 @@
                         <h5>{{$game->title}}</h5>
                         <h6 class="fst-italic text-muted">{{$game->product}}</h6>
                         <h6 class="text-muted">{{$game->price}} €</h6>
-                        <p class="card-text   fs-6">by Carmelo La Mantia</p>
-                        {{-- <a href="#" class="stretched-link text-danger">Leggi di più</a> --}}
+                        <p class="card-text fs-6">by {{$game->user->name}}</p>
+                        <a href="{{route('game.show', compact('game'))}}" class="btn btn-dark">More info..</a>
+
                     </div>
                 </div>
             </div>

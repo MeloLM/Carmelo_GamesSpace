@@ -14,6 +14,13 @@ class Game extends Model
         'price',
         'product',
         'description',
-        'cover'
+        'cover',
+        'user_id',
     ];
+
+    //UN OGGETTO DI CLASSE GAME PUO' ESSERE RELAZIONATO A UN SOLO UTENTE
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 }
