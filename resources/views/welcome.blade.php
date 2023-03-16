@@ -30,6 +30,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+    @if (session('userDeleted'))
+    <div class="alert alert-danger alert-dismissible fade show border-start border-end" role="alert">
+        {{ session('userDeleted') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     
     {{-- nel form mettere solo {{fillable}} --}}
     {{-- <x-card 

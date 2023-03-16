@@ -20,4 +20,9 @@ class Console extends Model
         //UN UTENTE HA PIU' CONSOLE
         return $this->belongsTo(User::class);
     }
+
+    //UNA CONSOLE RELAZIONATA A PIù GIOCHI
+    public function games(){
+    return $this->belongsToMany(Game::class);
+    }
 }

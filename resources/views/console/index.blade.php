@@ -11,15 +11,15 @@
         </div>
     </div>
 
-    @if (session('gameCreated'))
+    @if (session('consoleCreated'))
     <div class="alert alert-success alert-dismissible fade show border-start border-end" role="alert">
-        {{ session('gameCreated') }}
+        {{ session('consoleCreated') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
-    @if (session('condoleDeleted'))
+    @if (session('consoleDeleted'))
     <div class="alert alert-danger alert-dismissible fade show border-start border-end" role="alert">
-        {{ session('condoleDeleted') }}
+        {{ session('consoleDeleted') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif

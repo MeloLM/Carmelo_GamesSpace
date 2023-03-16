@@ -25,7 +25,19 @@
                     <div class="p-1 text-dark" >
                         <h5>{{$console->name}}</h5>
                         <h6 class="fst-italic text-muted">{{$console->brand}}</h6>
-                        <p class="card-text fs-6">by Carmelo La Mantia</p>
+                        <p class="card-text fs-6">by {{$console->user->name}}</p>
+
+                        <hr>
+
+                        <p>I giochi disponibili sono:</p>  
+                        <ul class="">
+                            @foreach ($console->games as $game)
+                            <li class="text-muted">{{$game->title}}, prodotto da {{$game->product}}, di prezzo {{$game->price}} € </li>
+                            @endforeach
+                        </ul>
+
+                        <hr>
+
                         <p class="">{{$console->description}}</p>
                         <a href="{{route('console.index')}}" class="btn btn-dark">Go Back</a>
 

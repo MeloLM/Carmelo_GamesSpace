@@ -17,8 +17,21 @@
                     @csrf
                     @method('put')
                     
-                    <input type="file" name="avatar" class="form-control">
+                    <input type="file" name="avatar" class="form-control mb-3">
                     <button type="submit" class="btn btn-dark">Inserisci avatar</button>
+                </form>
+                <form action="{{route('deleteAvatar',['user'=> Auth::user()])}}" method="POST">
+                    @csrf
+                    @method('put')
+                    
+                    <input type="file" name="avatar" class="form-control mb-3">
+                    <button type="submit" class="btn btn-danger mb-3">Cancella avatar</button>
+                </form>
+                <form action="{{route('user.destroy')}}" method="POST" >
+                    @csrf
+                    @method('delete')
+                    
+                    <button type="submit" class="btn btn-danger">Delete Profile</button>
                 </form>
             </div>
         </div>
@@ -30,9 +43,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+    @if (session('userDeleted'))
+    <div class="alert alert-danger alert-dismissible fade show border-start border-end" role="alert">
+        {{ session('userDeleted') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     
     <div class="container-fluid">
-        <img style="width: 50px; border-radius:50%;" src="{{Storage::url(Auth::user()->avatar)}}" class="m-3" alt="...">
+        <img style="width: 100px; border-radius:50%;" src="{{Storage::url(Auth::user()->avatar)}}" class="m-3" alt="...">
         <div class="row justify-content-center">
             <h2>Your console:</h2>
             @foreach(Auth::user()->consoles as $console)

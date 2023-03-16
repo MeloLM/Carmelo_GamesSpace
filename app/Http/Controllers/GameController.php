@@ -20,7 +20,10 @@ class GameController extends Controller
 
     //CRUD
     public function create_game(){
-        return view('game.createGame');
+
+        $consoles = Console::all();
+
+        return view('game.createGame',compact('consoles'));
     }
 
     public function store(GameRequest $request){
@@ -81,6 +84,10 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
+        foreach($console->games as $game){
+            $console->games()->detach($game->id);
+        }
+
         $game->delete();
         return redirect(route('homepage'))->with('gameDeleted', 'Hai cancellato il post');
     }

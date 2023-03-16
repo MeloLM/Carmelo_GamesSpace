@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\Console;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,9 @@ class ConsoleController extends Controller
      */
     public function create()
     {
-        return view('console.create');
+        $games = Game::all();
+
+        return view('console.create',compact('games'));
     }
 
     /**
@@ -37,7 +40,22 @@ class ConsoleController extends Controller
      */
     public function store(Request $request)
     {
-        $console = Console::create([
+        //CARMELO PREFERISCE QUESTA
+        //PRENDO OGGETTO DI CLASSE CONSOLE E GLI 'ATTACCO' IL RECORD GAME
+        // $console = Console::create([
+        //     'name' => $request->name,
+        //     'brand' => $request->brand,
+        //     'logo' => $request->file('logo')->store('public/logos'),
+        //     'description' => $request->description,
+        //     'user_id'=> Auth::user()->id,
+        // ]);
+        // $console->games()->attach($request->game);
+
+
+        //PRENDO OGGETTO DI CLASSE GAME E CREO CONSOLE
+        $game = Game::find($request->game);
+
+        $game->consoles()->create([
             'name' => $request->name,
             'brand' => $request->brand,
             'logo' => $request->file('logo')->store('public/logos'),
@@ -45,7 +63,7 @@ class ConsoleController extends Controller
             'user_id'=> Auth::user()->id,
         ]);
 
-        return redirect(route('homepage'))->with('consoleCreated', 'Hai creato con successo una console!');
+        return redirect(route('console.index'))->with('consoleCreated', 'Hai creato con successo una console!');
     }
 
     /**
@@ -65,7 +83,9 @@ class ConsoleController extends Controller
             return redirect(route('homepage'))->with('accessDenied','You are not authorized!');
         }
 
-        return view('console.edit', compact('console'));
+        $games = Game::all();
+
+        return view('console.edit', compact('console','games'));
     }
 
     /**
@@ -88,6 +108,8 @@ class ConsoleController extends Controller
             ]);
         }
 
+        $console->game()->attach($request->game);
+
         return redirect(route('console.index'))->with('houseUpdated', 'Hai modificato annuncio');
     }
 
@@ -96,6 +118,10 @@ class ConsoleController extends Controller
      */
     public function destroy(Console $console)
     {
+        foreach($console->games as $game){
+            $console->games()->detach($game->id);
+        }
+
         $console->delete();
 
         return redirect(route('console.index'))->with('consoleDeleted', 'Hai cancellato annuncio');

@@ -28,7 +28,7 @@
                         <p class="card-text fs-6">by {{$game->user->name}}</p>
                         <a href="{{route('homepage')}}" class="btn btn-primary">Back</a>
 
-                        @if (Auth::user() && Auth::id() == $console->user_id)
+                        @if (Auth::user() && Auth::id() == $game->user_id)
                             <a href="{{route('game.edit', compact('game'))}}" class="btn btn-warning ms-5 ">Edit</a>
                             <form action="{{route('game.destroy', compact('game'))}}" method="POST" class="d-inline">
                                 @csrf

@@ -30,6 +30,16 @@
                         <input type="file" class="form-control" name="logo" id="logo" placeholder="...">
                     </div>
                     <div class="mb-3">
+                        <label for="game">Giochi disponibili:</label>
+                        <select name="game" id="game" class="form-control">
+                            @foreach ($games as $game)
+                            <option value="{{$game->id}}">
+                                {{$game->title}}
+                            </option>    
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="description" class="form-label">Descrizione</label>
                         <textarea class="form-control" name="description" id="description" rows="4">{{old('description')}}</textarea>
                     </div>

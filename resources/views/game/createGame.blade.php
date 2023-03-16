@@ -35,6 +35,14 @@
                         <input type="file" class="form-control" name="cover" id="cover" placeholder="...">
                     </div>
                     <div class="mb-3">
+                        <label for="consoles" class="form-label">Console compatibili:</label>
+                        <select name="console[]" id="consoles" class="form-contol" multiple>
+                            @foreach ($consoles as $console)
+                                <option value="{{$console->id}}"></option>                                
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="description" class="form-label">Descrizione</label>
                         <textarea class="form-control" name="description" id="description" rows="4">{{old('description')}}</textarea>
                     </div>

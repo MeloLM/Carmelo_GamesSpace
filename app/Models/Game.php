@@ -23,4 +23,8 @@ class Game extends Model
         return $this->belongsTo(User::class);
     }
 
+    //OGGETTO  DI CLASSE GAME PUO' ESSERE RELAZIONATO A PIU' OGGETTI DI CLASSE CONSOLE
+    public function consoles(){
+        return $this->belongsToMany(Console::class);
+    }
 }

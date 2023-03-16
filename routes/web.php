@@ -18,8 +18,13 @@ use App\Http\Controllers\ConsoleController;
 */
 
 Route::get('/', [FrontController::class , 'homepage'])->name('homepage');
-Route::get('/profile', [FrontController::class,'profile'])->name('profile');
-Route::put('/profile/avatar/{user}', [FrontController::class, 'changeAvatar'])->name('changeAvatar');
+
+//ROUTE USER
+Route::get('/profile', [UserController::class,'profile'])->name('profile');
+Route::put('/profile/avatar/{user}', [UserController::class, 'changeAvatar'])->name('changeAvatar');
+Route::put('/profile/avatar/{user}/delete',[UserController::class,'deleteAvatar'])->name('deleteAvatar');
+Route::delete('/user/destroy',[UserController::class, 'destroy'])->name('user.destroy');
+
 
 //ROUTE GAMES
 Route::get('/games/show/{game}', [GameController::class,'show'])->name('game.show');
@@ -34,7 +39,6 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::get('/register', [UserController::class, 'register'])->name('register');
 
 
-
 //ROTTE CONSOLE
 Route::get('/console/create', [ConsoleController::class, 'create'])->name('console.create');
 Route::post('console/store', [ConsoleController::class, 'store'])->name('console.store');
@@ -42,4 +46,4 @@ Route::get('/console/index', [ConsoleController::class, 'index'])->name('console
 Route::get('/console/show/{console}', [ConsoleController::class, 'show'])->name('console.show');
 Route::get('/console/edit/{console}', [ConsoleController::class, 'edit'])->name('console.edit');
 Route::put('/console/update/{console}', [ConsoleController::class, 'update'])->name('console.update');
-Route::post('/console/destroy/{console}', [ConsoleController::class, 'destroy'])->name('console.destroy');
+Route::delete('/console/destroy/{console}', [ConsoleController::class, 'destroy'])->name('console.destroy');
