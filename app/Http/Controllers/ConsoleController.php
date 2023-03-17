@@ -42,26 +42,26 @@ class ConsoleController extends Controller
     {
         //CARMELO PREFERISCE QUESTA
         //PRENDO OGGETTO DI CLASSE CONSOLE E GLI 'ATTACCO' IL RECORD GAME
-        // $console = Console::create([
-        //     'name' => $request->name,
-        //     'brand' => $request->brand,
-        //     'logo' => $request->file('logo')->store('public/logos'),
-        //     'description' => $request->description,
-        //     'user_id'=> Auth::user()->id,
-        // ]);
-        // $console->games()->attach($request->game);
-
-
-        //PRENDO OGGETTO DI CLASSE GAME E CREO CONSOLE
-        $game = Game::find($request->game);
-
-        $game->consoles()->create([
+        $console = Console::create([
             'name' => $request->name,
             'brand' => $request->brand,
             'logo' => $request->file('logo')->store('public/logos'),
             'description' => $request->description,
             'user_id'=> Auth::user()->id,
         ]);
+        $console->games()->attach($request->game);
+
+
+        //PRENDO OGGETTO DI CLASSE GAME E CREO CONSOLE
+        // $game = Game::find($request->game);
+
+        // $game->consoles()->create([
+        //     'name' => $request->name,
+        //     'brand' => $request->brand,
+        //     'logo' => $request->file('logo')->store('public/logos'),
+        //     'description' => $request->description,
+        //     'user_id'=> Auth::user()->id,
+        // ]);
 
         return redirect(route('console.index'))->with('consoleCreated', 'Hai creato con successo una console!');
     }
@@ -116,7 +116,7 @@ class ConsoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Console $console)
+    public function destroy(Console $console, Game $game)
     {
         foreach($console->games as $game){
             $console->games()->detach($game->id);

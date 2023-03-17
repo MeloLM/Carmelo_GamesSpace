@@ -27,6 +27,7 @@ Route::delete('/user/destroy',[UserController::class, 'destroy'])->name('user.de
 
 
 //ROUTE GAMES
+Route::get('/games', [GameController::class, 'index'])->name('game.index');
 Route::get('/games/show/{game}', [GameController::class,'show'])->name('game.show');
 Route::get('/games/create',[GameController::class , 'create_game'])->name('createGame');
 Route::post('/games/store', [GameController::class, 'store'])->name('games.store');

@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-5">
-                <div class="card custom-card mt-5">
+                <div class="aside custom-card mt-3">
                 @if (!$game->cover)
                     <img src="https://picsum.photos/300/200" class="img-fluid card-img-top" alt="...">
                 @else

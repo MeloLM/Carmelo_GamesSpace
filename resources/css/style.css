@@ -1,3 +1,68 @@
-.bg{
-    color:red;
+*{
+    font-family: 'Optimus Princeps';
+    src: url('/public/fonts/OptimusPrinceps.ttf');
 }
+.font1{
+    font-family: 'OptimusPrincepsSemiBold';
+    src: url('/public/fonts/OptimusPrincepsSemiBold.ttf');
+    text-transform: uppercase; ;
+    font-weight: semibold;
+}
+
+body{
+    overflow-x: hidden;
+    margin: 0;
+    background:linear-gradient(rgba(33, 37, 41, 0), rgba(33, 37, 41, 0));
+}
+
+.mainBg {
+    background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/mainBg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 7rem;
+    z-index: 1;
+}
+.sectionBg {
+    background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/sectionMainBg.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    padding-top: 8rem;
+    z-index: 0;
+}
+.formBg {
+    background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/formBg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 1rem;
+    z-index: 0;
+}
+
+.custom-card{
+    height: 90%;
+    opacity: 0.8;
+}
+

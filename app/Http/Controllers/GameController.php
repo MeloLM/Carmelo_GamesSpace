@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Console;
 use Illuminate\Http\Request;
 use App\Http\Requests\GameRequest;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,13 @@ class GameController extends Controller
 
 
     //CRUD
+
+    public function index(){
+        $games = Game::all();
+
+        return view('game.index', compact('games'));
+    }
+
     public function create_game(){
 
         $consoles = Console::all();
@@ -27,6 +35,7 @@ class GameController extends Controller
     }
 
     public function store(GameRequest $request){
+
 
         $game = Game::create([
             'title'=>$request->title,
@@ -37,7 +46,9 @@ class GameController extends Controller
             'user_id'=> Auth::user()->id,
         ]);
 
-        return redirect(route('homepage'))->with('gameCreated', 'hai inserito il video gioco');
+        $game->consoles()->attach($request->consoles);
+
+        return redirect(route('game.index'))->with('gameCreated', 'hai inserito il video gioco');
     }
 
      /**
@@ -76,19 +87,19 @@ class GameController extends Controller
             ]);
         }
 
-        return redirect(route('homepage'))->with('houseUpdated', 'Hai modificato annuncio');
+        return redirect(route('game.index'))->with('houseUpdated', 'Hai modificato annuncio');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Game $game)
+    public function destroy(Game $game, Console $console)
     {
         foreach($console->games as $game){
             $console->games()->detach($game->id);
         }
 
         $game->delete();
-        return redirect(route('homepage'))->with('gameDeleted', 'Hai cancellato il post');
+        return redirect(route('game.index'))->with('gameDeleted', 'Hai cancellato il post');
     }
 }
