@@ -18,16 +18,18 @@ use App\Http\Controllers\ConsoleController;
 */
 
 Route::get('/', [FrontController::class , 'homepage'])->name('homepage');
+Route::get('/contact_us',[FrontController::class, 'contact_us'])->name('contact_us');
+Route::post('/contact_us/submit', [FrontController::class, 'contact_us_submit'])->name('contact_us_submit');
 
 //ROUTE USER
-Route::get('/profile', [UserController::class,'profile'])->name('profile');
+Route::get('/profile/{user?}', [UserController::class,'profile'])->name('profile');
 Route::put('/profile/avatar/{user}', [UserController::class, 'changeAvatar'])->name('changeAvatar');
 Route::put('/profile/avatar/{user}/delete',[UserController::class,'deleteAvatar'])->name('deleteAvatar');
 Route::delete('/user/destroy',[UserController::class, 'destroy'])->name('user.destroy');
 
 
 //ROUTE GAMES
-Route::get('/games', [GameController::class, 'index'])->name('game.index');
+Route::get('/games/index', [GameController::class, 'index'])->name('game.index');
 Route::get('/games/show/{game}', [GameController::class,'show'])->name('game.show');
 Route::get('/games/create',[GameController::class , 'create_game'])->name('createGame');
 Route::post('/games/store', [GameController::class, 'store'])->name('games.store');

@@ -1,10 +1,10 @@
 <x-layout>
     
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8">
+    <div class="container-fluid  loginBg">
+        <div class="row pt-5 justify-content-center">
+            <div class="col-12 mt-5 col-md-8">
         
-                <form class="p-5 shadow" action="{{route('login')}}" method="POST"> 
+                <form class="p-5 shadow bg-dark text-white rounded-3" action="{{route('login')}}" method="POST"> 
                     
                     @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible fade show border-start border-end">
@@ -31,7 +31,7 @@
                         <input type="checkbox" class="form-check-input" name="remember" id="remember">
                         <label class="form-check-label" for="remember" >Ricordami</label>
                       </div>
-                    <button type="submit" class="btn btn-outline-danger" >Accedi</button>
+                    <button type="submit" class="btn btn-ds" >Accedi</button>
                 </form>
             </div>
         </div>

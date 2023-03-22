@@ -22,14 +22,14 @@
             @endif
         </div>
         
-        <div class="row ">
+        <div class="row justify-content-center">
             @foreach($games as $game)
             <div class="col-12 col-md-3 mb-3">
                 <div class="card custom-card mt-5 bg-dark shadow">
                     @if (!$game->cover)
                     <img src="https://picsum.photos/300/200" class="img-fluid card-img-top " alt="...">
                     @else
-                    <img src="{{Storage::url($game->cover)}}" class="img-fluid card-img-top " alt="...">
+                    <img src="{{Storage::url($game->cover)}}" class="card-img-top img-fluid img_card" alt="...">
                     @endif  
                     <div class="p-1 text-white">
                         <h5>{{$game->title}}</h5>

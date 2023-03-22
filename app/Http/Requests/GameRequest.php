@@ -22,8 +22,8 @@ class GameRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=> 'required|min:3',
-            'product'=> 'required|max:200',
+            'title'=> 'required|min:3|unique:games,title',
+            'product'=> 'max:200',
             'cover'=> ' required|image',
             'price'=> 'required',
             'description'=>'required',
@@ -43,7 +43,8 @@ class GameRequest extends FormRequest
             'cover.required' => 'Immagine mancante. inserire immagine',
             'cover.image' => 'Immagine non valida. inserire immagine',
             'product.required'=>'Brand gioco non inserito.',
-            'product.max'=>'Hai superato il limite massimo di 200 caratteri.'
+            'product.max'=>'Hai superato il limite massimo di 200 caratteri.',
+            'title.unique'=>'Questo gioco è già presente'
         ];
     }
 }

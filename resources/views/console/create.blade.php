@@ -30,8 +30,8 @@
                         <input type="file" class="form-control" name="logo" id="logo" placeholder="...">
                     </div>
                     <div class="mb-3">
-                        <label for="game">Giochi disponibili:</label>
-                        <select name="game[]" id="game" class="form-control">
+                        <label for="game" class="form-label">Giochi disponibili:</label>
+                        <select name="games[]" id="game" class="form-control" multiple>
                             @foreach ($games as $game)
                             <option value="{{$game->id}}">
                                 {{$game->title}}
@@ -44,8 +44,8 @@
                         <textarea class="form-control" name="description" id="description" rows="4">{{old('description')}}</textarea>
                     </div>
                     <div class="mb-3 d-flex justify-content-between">
-                        <button type="submit" class="btn btn-success ">Aggiungi console</button>
-                        <a href="{{route('homepage')}}" class="btn btn-secondary">Torna alla Home</a>
+                        <button type="submit" class="btn btn-ds ">Aggiungi console</button>
+                        <a href="{{route('console.index')}}" class="btn btn-secondary">Torna alle console</a>
                     </div>
                 </form>
             </div>

@@ -64,13 +64,19 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view('game.edit', compact('game'));
+
+        if ($game->user_id != Auth::id()){
+            return redirect(route('homepage'))->with('accessDenied','You are not authorized!');
+        }
+        $consoles = Console::all();
+
+        return view('game.edit', compact('game','consoles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Game $game)
+    public function update(GameRequest $request, Game $game)
     {
         if($request->cover){
             $game->update([
@@ -86,6 +92,7 @@ class GameController extends Controller
                 'description'->$request->description,
             ]);
         }
+        $game->consoles()->attach($request->console);
 
         return redirect(route('game.index'))->with('houseUpdated', 'Hai modificato annuncio');
     }
@@ -93,10 +100,10 @@ class GameController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Game $game, Console $console)
+    public function destroy(Game $game)
     {
-        foreach($console->games as $game){
-            $console->games()->detach($game->id);
+        foreach($game->consoles as $console){
+            $game->consoles()->detach($console->id);
         }
 
         $game->delete();

@@ -10,11 +10,11 @@
     </div>
     @endif
     
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8">
+    <div class="container-fluid loginBg">
+        <div class="row justify-content-center pt-5">
+            <div class="col-12 col-md-8 pt-4">
                 
-                <form class="p-5 shadow" action="{{route('register')}}" method="POST"> 
+                <form class="p-5 shadow bg-dark text-white rounded-3" action="{{route('register')}}" method="POST"> 
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome Cognome:</label>
@@ -32,7 +32,7 @@
                         <label for="password" class="form-label">Conferma password:</label>
                         <input type="password" class="form-control" id="password" name="password_confirmation" placeholder="name@example.com">
                     </div>
-                    <button type="submit" class="btn btn-outline-danger" >Registrati</button>
+                    <button type="submit" class="btn btn-ds">Registrati</button>
                 </form>
             </div>       
         </div>       

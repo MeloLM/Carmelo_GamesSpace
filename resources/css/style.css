@@ -2,18 +2,28 @@
     font-family: 'Optimus Princeps';
     src: url('/public/fonts/OptimusPrinceps.ttf');
 }
-.font1{
+/* .font1{
     font-family: 'OptimusPrincepsSemiBold';
     src: url('/public/fonts/OptimusPrincepsSemiBold.ttf');
     text-transform: uppercase; ;
     font-weight: semibold;
-}
+} */ 
 
 body{
     overflow-x: hidden;
     margin: 0;
     background:linear-gradient(rgba(33, 37, 41, 0), rgba(33, 37, 41, 0));
 }
+
+:root{
+    --first-color:rgb(0,0,0) ;
+    --second-color:rgb(14,14,14) ;
+    --main-color:rgb(224,136,33);
+    --hover-color:rgba(224, 135, 33, 0.804);
+}
+
+
+
 
 .mainBg {
     background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/mainBg.jpg);
@@ -27,11 +37,26 @@ body{
     width: 100%;
     height: auto;
     min-height: 100vh;
+    padding-top: 6rem;
+    z-index: 1;
+}
+.littleMainBg {
+    background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/mainBg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 40vh;
     padding-top: 7rem;
     z-index: 1;
 }
 .sectionBg {
-    background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/sectionMainBg.gif);
+    background-image: linear-gradient(rgba(33, 37, 41, 0.542), rgba(33, 37, 41, 0.559)), url(/public/media/sectionMainBg.gif);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -60,9 +85,62 @@ body{
     padding-top: 1rem;
     z-index: 0;
 }
-
-.custom-card{
-    height: 90%;
-    opacity: 0.8;
+.profileBg {
+    background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/formBg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 30vh;
+    padding-top: 1rem;
+    z-index: 0;
 }
 
+.profileBg2{
+    background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/sectionMainBg.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 1rem;
+    z-index: 0;
+}
+.loginBg{
+    background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/sectionMainBg.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 1rem;
+    z-index: 0;
+}
+.custom-card{
+    width: 300px;
+    height: 450px;
+    opacity: 0.7;
+}
+
+.btn-ds{
+    background-color: var(--main-color);
+}
+
+.btn-ds:hover{
+    background-color: var(--hover-color);
+}

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\User;
+use App\Models\Console;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,17 +22,18 @@ class UserController extends Controller
 
     public function profile(){
         //sfruttare la relazione
-        return view('profile');
+        // return view('profile');
 
         //sfruttare una query al db
         //FLUENT INTERFACE + METHOD CHAINING
 
-        //// $consoles = Console::where('user_id', Auth::id())->orderBy('created_at','DESC')->get();
+         $consoles = Console::where('user_id', Auth::id())->orderBy('created_at','DESC')->get();
+         $games = Game::where('user_id', Auth::id())->orderBy('created_at','DESC')->get();
 
         // $query--> where--> orderBy
         //tutti i record -->recupera solo quelli dall'utente loggato--> ordino
         
-        ////return view ('profile', compact('consoles'));
+        return view ('profile', compact('consoles','games'));
     }
 
     public function changeAvatar(User $user, Request $request){

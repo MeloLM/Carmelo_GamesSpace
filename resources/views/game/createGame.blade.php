@@ -36,9 +36,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="consoles" class="form-label">Console compatibili:</label>
-                        <select name="console[]" id="consoles" class="form-contol" multiple>
+                        <select name="consoles[]" id="consoles" class="form-control" multiple>
                             @foreach ($consoles as $console)
-                                <option value="{{$console->id}}"></option>                                
+                                <option value="{{$console->id}}">
+                                    {{$console->name}}
+                                </option>                                
                             @endforeach
                         </select>
                     </div>
@@ -47,7 +49,7 @@
                         <textarea class="form-control" name="description" id="description" rows="4">{{old('description')}}</textarea>
                     </div>
                     <div class="mb-3 d-flex justify-content-between">
-                        <button type="submit" class="btn btn-success">Aggiungi Gioco</button>
+                        <button type="submit" class="btn btn-ds">Aggiungi Gioco</button>
                         <a href="{{route('game.index')}}" class="btn btn-secondary">Torna ai giochi</a>
                     </div>
                 </form>
