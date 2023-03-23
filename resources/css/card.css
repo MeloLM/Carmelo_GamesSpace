@@ -1,4 +1,73 @@
+
+/* CARD GAME */
 .img_card{
     height: 65%;
     opacity: 1;
+}
+
+/* CARD MAIN */
+.card1{
+    width: 300px;
+    height: 500px;
+    background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/card1bg.jpg);
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+    opacity: 1;
+    margin-right: 20px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding-top: 1rem;
+    z-index: 0;
+}
+.card2{
+    width: 300px;
+    height: 500px;
+    background-image: linear-gradient(rgba(33, 37, 41, 0.559), rgba(33, 37, 41, 0.559)), url(/public/media/card2bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+    opacity: 1;
+    margin-right: 20px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding-top: 1rem;
+    z-index: 0;
+}
+
+
+.cardIn{
+    height: 600px;
+    width: 600px;
+} 
+.cardIn a:hover {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 600px;
+    font-size: 92px;
+    transition: 2s;
+}
+
+.cardIn a{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    line-height: 600px;
+    font-size: 80px;
+}
+
+.card1:hover , .card2:hover{
+    
+    opacity: 0.5;
+    transition: 2s;
+    
 }

@@ -60,8 +60,17 @@
     
     
     <div class="container-fluid sectionBg">
-        <div class="row">
-            
+        <div class="row px-5 justify-content-around">
+            <div class="col-12 col-md-5 mb-5 d-flex align-items-center">
+                <div class="card1 cardIn d-flex justify-content-center align-items-center rounded-4">
+                    <h3 class="display-3 textMain">Dark Souls</h3>
+                </div>
+            </div>
+            <div class="col-12 col-md-5 mb-5 d-flex align-items-center">
+                <div class="card2 cardIn d-flex justify-content-center align-items-center rounded-4">
+                    <h3 class="display-3 textMain">Demon Souls</h3>
+                </div>
+            </div>
         </div>
     </div>
     
