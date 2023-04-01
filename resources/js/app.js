@@ -1,3 +1,4 @@
 import './bootstrap';
 import 'bootstrap';
-import './link'
+import './link';
+import './carousel';

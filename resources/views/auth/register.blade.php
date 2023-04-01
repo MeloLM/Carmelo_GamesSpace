@@ -30,7 +30,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Conferma password:</label>
-                        <input type="password" class="form-control" id="password" name="password_confirmation" placeholder="name@example.com">
+                        <input type="password" class="form-control" id="password" name="password_confirmation">
                     </div>
                     <button type="submit" class="btn btn-ds">Registrati</button>
                 </form>

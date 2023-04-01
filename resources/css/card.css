@@ -1,8 +1,9 @@
 
 /* CARD GAME */
 .img_card{
-    height: 65%;
+    height: 18rem;
     opacity: 1;
+    object-fit: cover;
 }
 
 /* CARD MAIN */
