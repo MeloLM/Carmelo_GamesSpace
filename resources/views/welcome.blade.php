@@ -28,7 +28,8 @@
                 <h2 class="font1 text-white text-center h1">
                     Welcome to Souls Space
                 </h2>
-                <p class="text-white text-center mt-5 mb-4 h4">Qui troverai recensioni dettagliate dei giochi Dark Souls, guide per affrontare i boss più difficili, analisi approfondite dei personaggi, delle armi e degli oggetti, e molto altro ancora. Ci concentreremo anche sulle teorie della trama e sulle connessioni tra i vari personaggi e luoghi del mondo di Dark Souls.</p>               
+                {{-- <p class="text-white text-center mt-5 mb-4 h4">Qui troverai recensioni dettagliate dei giochi Dark Souls, guide per affrontare i boss più difficili, analisi approfondite dei personaggi, delle armi e degli oggetti, e molto altro ancora. Ci concentreremo anche sulle teorie della trama e sulle connessioni tra i vari personaggi e luoghi del mondo di Dark Souls.</p>                --}}
+                <p class="text-white text-center mt-5 mb-4 h4">Here you will find detailed reviews of Dark Souls games, guides to tackle the toughest bosses, in-depth analysis of characters, weapons and items, and much more. We will also focus on theories of the plot and connections between the various characters and locations in the world of Dark Souls.</p>               
                 
             </div>
         </div>

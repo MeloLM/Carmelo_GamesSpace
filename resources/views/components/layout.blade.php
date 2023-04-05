@@ -8,7 +8,7 @@
     <title>Souls Space</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body >
     <style>
         /* width */
         ::-webkit-scrollbar {
@@ -34,6 +34,12 @@
     
     <x-navbar 
     /> 
+
+   
+    {{-- <div class="burn">
+
+      <img src="/media/borderBurn.png" class="borderBurn" alt="">
+    </div> --}}
     
     <main class="min-vh-100">
         {{$slot}}

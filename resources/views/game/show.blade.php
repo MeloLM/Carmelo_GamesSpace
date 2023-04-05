@@ -19,7 +19,7 @@
                     @if (!$game->cover)
                     <img src="https://picsum.photos/300/200" class="img-fluid card-img-top" alt="...">
                     @else
-                    <img src="{{Storage::url($game->cover)}}" class="img-fluid card-img-top"  alt="...">
+                    <img src="{{Storage::url($game->cover)}}" class="img-fluid card-img-top rounded"  alt="...">
                     @endif  
                     <div class="p-1 text-white d-flex justify-content-around" >
                         

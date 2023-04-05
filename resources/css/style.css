@@ -22,7 +22,15 @@ body{
     --hover-color:rgba(224, 135, 33, 0.804);
 }
 
+.burn{
+    position: fixed;
+    z-index: 40;
+}
 
+.borderBurn{
+    width: 100vw;
+    height: 100vh;
+}
 .textMain{
     color: var(--main-color);
 }
