@@ -17,8 +17,9 @@
             @endif
             <div class="col-12">
                 <h2 class="display-4 text-center">
-                    Consoles
+                    You entered in the Fog
                 </h2>
+                <h5 class="text-center">There are the Bosses</h5>
             </div>
             
         </div>

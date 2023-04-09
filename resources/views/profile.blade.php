@@ -19,32 +19,32 @@
                 <img style="width: 300px; border-radius:50%;" src="{{Storage::url(Auth::user()->avatar)}}" class="m-3" alt="...">
             </div>
             <div class="col-6">
-                <h2>Inserisci avatar</h2>
-                <form action="{{route('changeAvatar', ['user'=> Auth::user()])}}" method="POST" enctype="multipart/form-data">
+                <h2>Choose Avatar :</h2>
+                <form action="{{route('changeAvatar', ['user'=> Auth::user()])}}" class="text-center" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     
                     <input type="file" name="avatar" class="form-control mb-3">
-                    <button type="submit" class="btn btn-warning mb-3">Inserisci avatar</button>
+                    <button type="submit" class="btn btn-warning mb-3">Add new avatar</button>
                 </form>
                 <div class="d-flex justify-content-between">
                     <form action="{{route('deleteAvatar',['user'=> Auth::user()])}}" method="POST">
                         @csrf
                         @method('put')
                         
-                        <button type="submit" class="btn btn-danger mb-3">Cancella avatar</button>
+                        <button type="submit" class="btn btn-danger mb-3">Delete avatar</button>
                     </form>
                     <form action="{{route('user.destroy')}}" method="POST" >
                         @csrf
                         @method('delete')
                         
-                        <button type="submit" class="btn btn-danger">Delete Profile</button>
+                        <button type="submit" class="btn btn-danger">Destroy Profile</button>
                     </form>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center">
-            <h2>Your console:</h2>
+            <h2>Your Boss area:</h2>
             @foreach($consoles as $console)
             <div class="col-12 col-md-3 ">
                 <div class="card custom-card mt-5 bg-dark">

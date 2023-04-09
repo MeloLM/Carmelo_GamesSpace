@@ -25,41 +25,42 @@
                     @method('put')
                     
                     <div class="mb-3">
-                        <label for="title" class="form-label">Nome Gioco:</label>
-                        <input type="text" class="form-control" name="title" id="title" value="{{old('title')}}">
+                        <label for="title" class="form-label">New game name:</label>
+                        <input type="text" class="form-control" name="title" id="title" value="{{$game->title}}">
                     </div>
                     <div class="mb-3">
-                        <label for="price" class="form-label">Prezzo:</label>
-                        <input type="double" class="form-control" name="price" id="price" value="{{old('price')}}">
+                        <label for="price" class="form-label">Price:</label>
+                        <input type="double" class="form-control" name="price" id="price" value="{{$game->price}}">
+                    </div>
+                    <div class="mb-3 d-flex">
+                        <label for="existingCover" class="form-label me-5 fs-3">Actually picture:</label>
+                        <img src="{{Storage::url($game->cover)}}" width="300" class="rounded-2" alt="Preview old photo">
                     </div>
                     <div class="mb-3">
-                        <label for="existingCover" class="form-label fontor fs-3"> Immagine attuale</label>
-                        <img src="{{Storage::url($game->cover)}}" width="300" alt="..">
-                    </div>
-                    <div class="mb-3">
-                        <label for="cover" class="form-label">Foto gioco nuova:</label>
+                        <label for="cover" class="form-label">New game photo:</label>
                         <input type="file" class="form-control" name="cover" id="cover">
                     </div>
                     <div class="mb-3">
-                        <label for="console">Console disponibili:</label>
-                        <select name="console" id="console" class="form-control">
+                        <label for="console">Boss of the game:</label>
+                        <select name="console" id="console" multiple class="form-control overflow-hidden">
                             @foreach ($consoles as $console)
-                            <option value="{{$console->id}}">
-                                {{$console->name}}
-                            </option>    
+                                <option value="{{$console->id}}" 
+                                @if ($game->consoles->contains($console)) selected @endif
+                                >
+                                    {{$console->name}}
+                                </option>    
                             @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Descrizione del gioco:</label>
-                        <textarea class="form-control" name="description" id="description" rows="4">{{old('description')}}</textarea>
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea class="form-control" name="description" id="description" rows="4">{{$game->description}}</textarea>
                     </div>
                 </form>
-
-                
+               
                 <div class="d-flex justify-content-between mb-3">
-                    <button type="submit" form="my-form" class="btn btn-ds">Inserisci modifica</button>
-                    <a href="{{route('game.index')}}" class="btn btn-secondary">Torna ai giochi</a>
+                    <button type="submit" form="my-form" class="btn btn-ds">Update this game</button>
+                    <a href="{{route('game.index')}}" class="btn btn-secondary">Go to back</a>
                 </div>
                 
                 

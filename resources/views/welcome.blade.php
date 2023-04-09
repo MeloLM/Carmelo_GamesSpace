@@ -50,7 +50,7 @@
                     <button class="button mt-4">
                         <span class="button_lg">
                             <span class="button_sl"></span>
-                            <span class="button_text">Console</span>
+                            <span class="button_text">Boss area</span>
                         </span>
                     </button>  
                 </a>

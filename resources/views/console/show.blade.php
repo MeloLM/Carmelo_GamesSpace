@@ -5,7 +5,7 @@
         <div class="row p-3 ">
             <div class="col-12 mt-5 text-center text-white">
                 <h2>
-                    Details Console:
+                    Details Boss:
                 </h2>
             </div>
             

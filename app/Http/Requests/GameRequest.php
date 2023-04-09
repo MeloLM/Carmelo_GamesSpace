@@ -24,7 +24,7 @@ class GameRequest extends FormRequest
         return [
             'title'=> 'required|min:3|unique:games,title',
             'product'=> 'max:200',
-            'cover'=> ' required|image',
+            'cover'=> 'required|image',
             'price'=> 'required',
             'description'=>'required',
         ];

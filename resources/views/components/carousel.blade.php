@@ -3,8 +3,8 @@
       <span>Dark souls</span>
       <h1>Best <span class="titleCarousel">Bosses</span></h1>
       <hr>
-      <p>Questi sono solo alcuni esempi dei tanti boss notevoli presenti in Dark Souls 3. La serie è famosa per la sua sfida e i suoi boss sono spesso considerati tra i migliori nel genere dei giochi di ruolo d'azione.</p>
-      <a href="#">Enter in the Fog</a>
+      <p>These are just a few examples of the many notable bosses present in Dark Souls 3. The series is famous for its challenge, and its bosses are often considered among the best in the action role-playing game genre.</p>
+      <a href="{{route('console.index')}}">Enter in the Fog</a>
     </div>
     <div class="swiper">
       <div class="swiper-wrapper">

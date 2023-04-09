@@ -11,15 +11,15 @@
         </li>
         <li class="nav-item">
           <span>
-            <a class="nav-link link_custom" href="{{route('game.index')}}">Game</a>
+            <a class="nav-link link_custom" href="{{route('game.index')}}">Games</a>
           </span>
         </li>
         <li class="nav-item">
-          <a class="nav-link link_custom" href="{{route('console.index')}}">Console</a>
+          <a class="nav-link link_custom" href="{{route('console.index')}}">Bosses</a>
         </li>
         @auth
         <li class="nav-item">
-          <a class="nav-link link_custom" href="{{route('console.create')}}">Add Console</a>
+          <a class="nav-link link_custom" href="{{route('console.create')}}">Add Bosses</a>
         </li>
         <li class="nav-item">
           <a class="nav-link link_custom" href="{{route('createGame')}}">Add Games</a>
@@ -35,11 +35,11 @@
         @auth
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle link_custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Benvenuto {{Auth::user()->name}} 
+            Welcome {{Auth::user()->name}} 
            
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item link_custom" href="{{route('profile')}}">Profilo</a></li>
+            <li><a class="dropdown-item link_custom" href="{{route('profile')}}">Profile</a></li>
             <li><a class="dropdown-item link_custom" href="#" onclick="event.preventDefault(); document.querySelector('#form-logout').submit();" >Esci</a></li>
             <form id="form-logout" action="{{route('logout')}}" method="POST" class="d-none">@csrf</form>
           </ul>
@@ -47,10 +47,10 @@
         @else
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle link_custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Benvenuto Guest
+            Welcome Guest
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item link_custom" href="{{route('register')}}">Registrati</a></li>
+            <li><a class="dropdown-item link_custom" href="{{route('register')}}">Sign in</a></li>
             <li><a class="dropdown-item link_custom" href="{{route('login')}}">Login</a></li>      
           </ul>
         </li>

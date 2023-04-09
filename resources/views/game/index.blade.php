@@ -13,6 +13,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
+            @if (session('gameUpdated'))
+            <div class="alert alert-success alert-dismissible fade show border-start border-end" role="alert">
+                {{ session('gameUpdated') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
             
             @if (session('gameDeleted'))
             <div class="alert alert-danger alert-dismissible fade show border-start border-end" role="alert">

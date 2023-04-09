@@ -38,22 +38,22 @@
             </div>
             <div class="col-12 col-md-5 mt-3 text-white">
                 <h5>{{$game->title}}</h5>
-                <p class="">{{$game->description}}</p>
                 <h6 class="fst-italic text-muted">{{$game->product}}</h6>
                 <h6 class="text-muted mt-3">{{$game->price}} €</h6>
-                <a href="{{route('profile',['user'=>$game->user->id])}}" class="text-white text-decoration-none fs-6 mt-5">by {{$game->user->name}}</a>
                 
                 @if (count($game->consoles) > 0)
                 <hr>
-                    <p>Le console disponibili sono:</p>  
+                    <p>Boss in the game:</p>  
                     <ul class="">
                         @foreach ($game->consoles as $console)
-                            <li class="text-muted">{{$console->name}}, prodotto da {{$console->brand}}</li>
+                            <li class="text-muted">{{$console->name}}, weak to [{{$console->brand}}]</li>
                         @endforeach
                     </ul>
                 <hr>
                 @endif
-                
+                    
+                <p class="mb-5">{{$game->description}}</p>
+                <a href="{{route('profile',['user'=>$game->user->id])}}" class="text-white text-decoration-none fs-6 mt-5">by {{$game->user->name}}</a>
             </div>
         </div>
     </div>

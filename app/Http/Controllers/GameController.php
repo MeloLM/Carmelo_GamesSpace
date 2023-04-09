@@ -76,26 +76,28 @@ class GameController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(GameRequest $request, Game $game)
+    public function update(Request $request, Game $game)
     {
-        if($request->cover){
+        if(!$request->cover){
             $game->update([
                 'title'=>$request->title,
                 'price'=>$request->price,
                 'description'=>$request->description,
-                'cover'=>$request->file('cover')->store('public/foto'),
             ]);
         }else{
             $game->update([
                 'title'=>$request->title,
                 'price'=>$request->price,
                 'description'->$request->description,
+                'cover'=>$request->file('cover')->store('public/foto'),
             ]);
         }
         $game->consoles()->attach($request->console);
 
-        return redirect(route('game.index'))->with('houseUpdated', 'Hai modificato annuncio');
+        return redirect(route('game.index'))->with('gameUpdated', 'Hai modificato annuncio');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
