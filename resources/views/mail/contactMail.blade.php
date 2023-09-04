@@ -9,7 +9,7 @@
 <body class="">
     
     <h1>Hi {{$userData['name']}} </h1>
-    <p>your e-mail:<br> <br> {{$userData['email']}}</p>
+    <p>Your e-mail:<br> {{$userData['email']}}</p>
     <hr>
     <p>{{$userData['message']}}</p>
 
