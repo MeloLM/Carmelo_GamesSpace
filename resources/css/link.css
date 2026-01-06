@@ -1,0 +1,35 @@
+.link_custom{
+    font-size: 1.2rem;
+}
+
+.nav-link:active{
+    color:var(--main-color);
+}
+.nav-link:hover{
+    color:var(--hover-color);
+}
+.selected{
+    color:var(--main-color);
+}
+
+/* a {
+    text-decoration: none;
+    position: relative;
+}
+
+a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 1px;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    background-color: black;
+    transition: all 0.2s ease-in-out;
+}
+
+a:hover::after {
+    width: 100%;
+    left: 0;
+} */
