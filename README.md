@@ -28,6 +28,25 @@
 
 ---
 
+## 📸 Screenshots
+
+<div align="center">
+  <h3>🏠 Landing Page</h3>
+  <img src="https://github.com/MeloLM/Carmelo_GamesSpace/blob/main/assets/screen_landPage.png" alt="Landing Page" width="800">
+</div>
+
+<div align="center">
+  <h3>🎮 Games Gallery</h3>
+  <img src="https://github.com/MeloLM/Carmelo_GamesSpace/blob/main/assets/screen_gamesPage.png" alt="Games Page" width="800">
+</div>
+
+<div align="center">
+  <h3>👤 User Profile</h3>
+  <img src="https://github.com/MeloLM/Carmelo_GamesSpace/blob/main/assets/screen_profilePage.png" alt="Profile Page" width="800">
+</div>
+
+---
+
 ## ✨ Features
 
 - 🎮 **Game Management** - Browse and create game profiles for the Souls saga
