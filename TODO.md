@@ -1,10 +1,277 @@
 # 📋 TODO - Souls Space Project Improvements
 *Generato il: 8 Gennaio 2026*  
-*Ultima Revisione: 8 Gennaio 2026 - Analisi Architetturale Completa*
+*Ultima Revisione: 8 Gennaio 2026*
 
 ---
 
-## 🔴 CRITICI - Da Fare Subito
+## 🟠 IMPORTANTI - Qualità del Codice
+
+### 1. Validazione Inconsistente
+**Priorità: MEDIA-ALTA**
+
+- [ ] Creare `UserAvatarRequest` per validare upload avatar
+- [ ] Creare `ContactRequest` per validare form contatti
+- [ ] Spostare validazione inline da `UserController@changeAvatar` a Request dedicata
+- [ ] Spostare validazione inline da `FrontController@contact_us_submit` a Request dedicata
+- [ ] Unificare messaggi di errore in italiano in tutti i Request
+
+**Motivo**: Validazione attualmente mischiata tra controller e Request. Serve consistenza.
+
+### 2. Testing Assente
+**Priorità: MEDIA-ALTA**
+
+- [ ] Creare Feature Tests per:
+  - `GameControllerTest.php`: CRUD completo + autorizzazioni
+  - `ConsoleControllerTest.php`: CRUD completo + autorizzazioni
+  - `UserControllerTest.php`: Profilo, avatar, eliminazione account
+  - `FrontControllerTest.php`: Homepage, contact form
+  - `AuthTest.php`: Login, registrazione, logout
+- [ ] Creare Unit Tests per:
+  - Relazioni Model (Game-User, Console-User, Game-Console)
+  - Policy (GamePolicy, ConsolePolicy)
+- [ ] Configurare GitHub Actions per CI/CD
+
+**Motivo**: Progetto in produzione senza test automatici = alto rischio di regressioni.
+
+### 3. Eager Loading Incompleto
+**Priorità: MEDIA**
+
+- [ ] Verificare query N+1 con Laravel Debugbar
+- [ ] Aggiungere `with('consoles')` in `FrontController@homepage` se serve
+- [ ] Considerare eager loading in `UserController@profile` per relazioni annidate
+
+**Nota**: Già presente in `GameController@index` e `ConsoleController@index` ✅
+
+### 4. Soft Deletes Mancante
+**Priorità: MEDIA**
+
+- [ ] Aggiungere trait `SoftDeletes` a `Game` e `Console` model
+- [ ] Creare migration `add_soft_deletes_to_games_and_consoles`
+- [ ] Aggiungere metodi `restore()` e `forceDelete()` nei controller
+- [ ] Aggiungere route per ripristino elementi eliminati
+- [ ] Creare sezione "Cestino" nel profilo utente
+
+**Motivo**: Permette recupero accidentale eliminazioni senza perdere dati.
+
+### 5. Gestione Avatar Orfani
+**Priorità: MEDIA**
+
+- [ ] Implementare `Storage::delete()` in `UserController@changeAvatar`
+- [ ] Implementare `Storage::delete()` in `UserController@deleteAvatar`
+
+**Nota**: Già risolto per Game cover e Console logo ✅
+
+---
+
+## 🟡 MIGLIORAMENTI - Funzionalità
+
+### 6. API REST
+**Priorità: MEDIA**
+
+- [ ] Creare API Controller in `app/Http/Controllers/Api/`
+- [ ] Implementare autenticazione con Sanctum (già installato)
+- [ ] Documentare endpoints in `docs/API.md`
+- [ ] Aggiungere rate limiting
+- [ ] Testare con Postman/Insomnia
+
+### 7. Sistema di Ricerca
+**Priorità: MEDIA**
+
+- [ ] Aggiungere barra di ricerca in `/games/index`
+- [ ] Aggiungere barra di ricerca in `/bossArea/index`
+- [ ] Considerare Laravel Scout per full-text search
+
+### 8. Sistema di Rating/Recensioni
+**Priorità: BASSA-MEDIA**
+
+- [ ] Creare model `Review` con relazioni
+- [ ] Aggiungere metodo `reviews()` in `Game` model
+- [ ] Creare sezione recensioni in `game.show` view
+- [ ] Policy per impedire multiple recensioni
+
+### 9. Admin Dashboard
+**Priorità: BASSA-MEDIA**
+
+- [ ] Aggiungere campo `is_admin` a tabella `users`
+- [ ] Creare middleware `IsAdmin`
+- [ ] Creare `AdminController` con dashboard statistiche
+- [ ] Creare route `/admin/*` protette
+- [ ] Views admin con grafici (Chart.js)
+
+### 10. Sistema di Caching
+**Priorità: BASSA**
+
+- [ ] Implementare cache per liste (games, consoles, profili)
+- [ ] Invalidare cache su create/update/delete
+- [ ] Configurare Redis per ambiente produzione
+
+---
+
+## 🟢 OTTIMIZZAZIONI - Infrastruttura
+
+### 11. Configurazione Ambiente Produzione
+**Priorità: ALTA per Deploy**
+
+- [ ] Creare `.env.production` con configurazione sicura
+- [ ] Configurare HTTPS/SSL
+- [ ] Settare `SESSION_SECURE_COOKIE=true`
+- [ ] Configurare mail driver produzione
+
+### 12. Docker Setup
+**Priorità: MEDIA**
+
+- [ ] Creare `Dockerfile` per PHP 8.1+
+- [ ] Creare `docker-compose.yml` con servizi (PHP, Nginx, PostgreSQL, Redis)
+- [ ] Documentare in README.md sezione "Docker Deployment"
+
+### 13. CI/CD Pipeline
+**Priorità: MEDIA**
+
+- [ ] Creare `.github/workflows/tests.yml`
+- [ ] Configurare deploy automatico su main branch
+
+### 14. Database Optimization
+**Priorità: BASSA-MEDIA**
+
+- [ ] Aggiungere indici su colonne frequentemente interrogate
+- [ ] Creare migration `add_indexes_for_performance`
+- [ ] Analizzare slow queries con Laravel Telescope
+
+---
+
+## 🎨 UI/UX - Frontend
+
+### 15. Miglioramenti Interfaccia
+**Priorità: BASSA-MEDIA**
+
+- [ ] Aggiungere paginazione (Laravel: `paginate(12)`)
+- [ ] Implementare caricamento lazy immagini
+- [ ] Aggiungere breadcrumbs per navigazione
+- [ ] Migliorare messaggi flash (icone, animazioni)
+- [ ] Dark mode toggle
+
+### 16. Accessibilità (A11y)
+**Priorità: BASSA**
+
+- [ ] Verificare contrasto colori (WCAG AA)
+- [ ] Aggiungere attributi `aria-label` su icone
+- [ ] Testare navigazione con tastiera
+- [ ] Aggiungere testi alternativi a tutte le immagini
+
+### 17. Progressive Web App (PWA)
+**Priorità: BASSA**
+
+- [ ] Creare `manifest.json`
+- [ ] Configurare Service Worker per offline mode
+- [ ] Aggiungere icone app (192x192, 512x512)
+
+---
+
+## 📚 DOCUMENTAZIONE
+
+### 18. Miglioramenti README
+**Priorità: BASSA**
+
+- [ ] Aggiungere sezione "Troubleshooting"
+- [ ] Aggiungere badge (Build status, Code coverage)
+- [ ] Video demo o GIF animate
+
+### 19. Code Documentation
+**Priorità: BASSA**
+
+- [ ] Aggiungere PHPDoc completi su metodi controller
+- [ ] Generare documentazione API con phpDocumentor
+- [ ] Commentare logica business complessa
+
+---
+
+## 🔒 SICUREZZA
+
+### 20. Security Hardening
+**Priorità: MEDIA-ALTA**
+
+- [ ] Implementare rate limiting (Login, Registrazione, Contact form)
+- [ ] Aggiungere honeypot in form pubblici
+- [ ] Validare MIME type reali file upload
+- [ ] Implementare Content Security Policy (CSP) headers
+- [ ] Aggiungere logs per azioni sensibili
+
+### 21. Aggiornamenti Dipendenze
+**Priorità: CONTINUA**
+
+- [ ] Verificare vulnerabilità con `composer audit` e `npm audit`
+- [ ] Settare Dependabot su GitHub per PR automatiche
+
+---
+
+## 🧪 QUALITY ASSURANCE
+
+### 22. Code Quality Tools
+**Priorità: MEDIA**
+
+- [ ] Eseguire Laravel Pint: `./vendor/bin/pint`
+- [ ] Installare PHPStan (analisi statica)
+- [ ] Installare Laravel Telescope (debug produzione)
+- [ ] Installare Laravel Debugbar (solo sviluppo)
+
+### 23. Performance Monitoring
+**Priorità: BASSA (post-deploy)**
+
+- [ ] Integrare Sentry (error tracking)
+- [ ] Configurare alerting email su errori critici
+
+---
+
+## ✅ COMPLETATI (08/01/2026)
+
+### ✅ TODO #1: Autorizzazione metodi destroy()
+**RISOLTO** | **Priorità: CRITICA** | **Impatto: SICUREZZA**
+
+- [x] Aggiunto `$this->authorize('delete', $game)` in `GameController@destroy`
+- [x] Aggiunto `$this->authorize('delete', $console)` in `ConsoleController@destroy`
+
+**Risultato**: Solo i proprietari possono eliminare i propri contenuti.
+
+---
+
+### ✅ TODO #2: Implementare Policies nei Controller
+**RISOLTO** | **Priorità: ALTA** | **Impatto: SICUREZZA**
+
+- [x] Sostituiti controlli manuali con `$this->authorize('update')` in `GameController`
+- [x] Sostituiti controlli manuali con `$this->authorize('update')` in `ConsoleController`
+
+**Risultato**: Codice più pulito e coerente con architettura Laravel.
+
+---
+
+### ✅ TODO #3: Gestione File Orfani
+**RISOLTO PARZIALMENTE** | **Priorità: ALTA** | **Impatto: STORAGE**
+
+- [x] Implementato `Storage::delete()` per Game cover in update/destroy
+- [x] Implementato `Storage::delete()` per Console logo in update/destroy
+
+**Risultato**: File vengono eliminati quando si aggiorna o elimina un record.
+
+**Rimane da fare**: Avatar utente (vedi TODO #5)
+
+---
+
+## 🎯 Riepilogo Stato
+
+| Categoria | Totale | Completati | Rimanenti |
+|-----------|--------|------------|-----------|
+| 🔴 **CRITICI** | 3 | 3 | 0 |
+| 🟠 **IMPORTANTI** | 5 | 0 | 5 |
+| 🟡 **MIGLIORAMENTI** | 5 | 0 | 5 |
+| 🟢 **OTTIMIZZAZIONI** | 4 | 0 | 4 |
+| 🎨 **UI/UX** | 3 | 0 | 3 |
+| 📚 **DOCUMENTAZIONE** | 2 | 0 | 2 |
+| 🔒 **SICUREZZA** | 2 | 0 | 2 |
+| 🧪 **QA** | 2 | 0 | 2 |
+
+**Ultima Revisione**: 8 Gennaio 2026  
+**Progetto**: Souls Space v2.1  
+**Maintainer**: Team Development
 
 ### 1. ⚠️ URGENTE: Aggiungere Autorizzazione ai metodi destroy()
 **Priorità: CRITICA** | **Impatto: SICUREZZA** | ✅ **COMPLETATO 08/01/2026**
