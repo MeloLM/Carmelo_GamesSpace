@@ -7,6 +7,7 @@ use App\Models\Console;
 use Illuminate\Http\Request;
 use App\Http\Requests\GameRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -64,10 +65,9 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-
-        if ($game->user_id != Auth::id()){
-            return redirect(route('homepage'))->with('accessDenied','You are not authorized!');
-        }
+        // Usa Policy per autorizzazione
+        $this->authorize('update', $game);
+        
         $consoles = Console::all();
 
         return view('game.edit', compact('game','consoles'));
@@ -78,10 +78,8 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        // Verifica che l'utente sia il proprietario
-        if ($game->user_id != Auth::id()){
-            return redirect(route('homepage'))->with('accessDenied','You are not authorized!');
-        }
+        // Usa Policy per autorizzazione
+        $this->authorize('update', $game);
 
         if(!$request->hasFile('cover')){
             $game->update([
@@ -90,6 +88,10 @@ class GameController extends Controller
                 'description'=>$request->description,
             ]);
         }else{
+            // Elimina il vecchio file cover se esiste
+            if($game->cover){
+                Storage::delete($game->cover);
+            }
             $game->update([
                 'title'=>$request->title,
                 'price'=>$request->price,
@@ -109,6 +111,14 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
+        // Usa Policy per autorizzazione
+        $this->authorize('delete', $game);
+        
+        // Elimina il file cover se esiste
+        if($game->cover){
+            Storage::delete($game->cover);
+        }
+        
         // Detach tutte le relazioni in una sola query
         $game->consoles()->detach();
 

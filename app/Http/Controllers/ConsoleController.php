@@ -6,6 +6,7 @@ use App\Models\Game;
 use App\Models\Console;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ConsoleRequest;
 
 class ConsoleController extends Controller
@@ -69,9 +70,8 @@ class ConsoleController extends Controller
     */
     public function edit(Console $console)
     {
-        if ($console->user_id != Auth::id()){
-            return redirect(route('homepage'))->with('accessDenied','You are not authorized!');
-        }
+        // Usa Policy per autorizzazione
+        $this->authorize('update', $console);
         
         $games = Game::all();
         
@@ -83,10 +83,8 @@ class ConsoleController extends Controller
     */
     public function update(ConsoleRequest $request, Console $console)
     {
-        // Verifica che l'utente sia il proprietario
-        if ($console->user_id != Auth::id()){
-            return redirect(route('homepage'))->with('accessDenied','You are not authorized!');
-        }
+        // Usa Policy per autorizzazione
+        $this->authorize('update', $console);
         
         $console->update([
             'name' => $request->name,
@@ -95,6 +93,10 @@ class ConsoleController extends Controller
         ]);
         
         if($request->hasFile('logo')){
+            // Elimina il vecchio logo se esiste
+            if($console->logo){
+                Storage::delete($console->logo);
+            }
             $console->update([
                 'logo' => $request->file('logo')->store('public/logos'),
             ]);
@@ -110,6 +112,14 @@ class ConsoleController extends Controller
     */
     public function destroy(Console $console)
     {
+        // Usa Policy per autorizzazione
+        $this->authorize('delete', $console);
+        
+        // Elimina il file logo se esiste
+        if($console->logo){
+            Storage::delete($console->logo);
+        }
+        
         // Detach tutte le relazioni in una sola query
         $console->games()->detach();
         

@@ -7,38 +7,38 @@
 ## 🔴 CRITICI - Da Fare Subito
 
 ### 1. ⚠️ URGENTE: Aggiungere Autorizzazione ai metodi destroy()
-**Priorità: CRITICA** | **Impatto: SICUREZZA**
+**Priorità: CRITICA** | **Impatto: SICUREZZA** | ✅ **COMPLETATO 08/01/2026**
 
 **PROBLEMA SCOPERTO:** I metodi `destroy()` in entrambi i controller NON verificano se l'utente è il proprietario!
 
-- [ ] Aggiungere `$this->authorize('delete', $game)` in `GameController@destroy` (linea 101)
-- [ ] Aggiungere `$this->authorize('delete', $console)` in `ConsoleController@destroy` (linea 109)
+- [x] Aggiungere `$this->authorize('delete', $game)` in `GameController@destroy` (linea 101)
+- [x] Aggiungere `$this->authorize('delete', $console)` in `ConsoleController@destroy` (linea 109)
 
-**Rischio:** Qualsiasi utente autenticato può eliminare giochi/boss di altri utenti!
+**Rischio:** ~~Qualsiasi utente autenticato può eliminare giochi/boss di altri utenti!~~ **RISOLTO**
 
 ### 2. Implementare Policies nei Controller
-**Priorità: ALTA** | **Impatto: SICUREZZA**
+**Priorità: ALTA** | **Impatto: SICUREZZA** | ✅ **COMPLETATO 08/01/2026**
 
 ✅ **VERIFICATO:** Le Policies sono già registrate in `AuthServiceProvider` (linee 18-21)
 
-- [ ] Sostituire controlli manuali con `$this->authorize()`:
+- [x] Sostituire controlli manuali con `$this->authorize()`:
   - `GameController.php` linea 64-67 (edit) → `$this->authorize('update', $game)`
   - `GameController.php` linea 76-78 (update) → `$this->authorize('update', $game)`
   - `ConsoleController.php` linea 69-71 (edit) → `$this->authorize('update', $console)`
   - `ConsoleController.php` linea 84-86 (update) → `$this->authorize('update', $console)`
 
-**Motivo**: Le Policy esistono già (`GamePolicy.php`, `ConsolePolicy.php`) e sono registrate, ma non vengono usate. Il codice duplica logica di autorizzazione violando DRY.
+**Motivo**: Le Policy esistono già (`GamePolicy.php`, `ConsolePolicy.php`) e sono registrate, ora vengono usate correttamente.
 
 ### 3. Gestione File Orfani
-**Priorità: ALTA** | **Impatto: STORAGE**
+**Priorità: ALTA** | **Impatto: STORAGE** | ✅ **COMPLETATO 08/01/2026**
 
-- [ ] Implementare `Storage::delete()` quando si elimina/aggiorna:
+- [x] Implementare `Storage::delete()` quando si elimina/aggiorna:
   - Game cover in `GameController@destroy`
   - Game cover in `GameController@update` (quando si carica nuova immagine)
   - Console logo in `ConsoleController@destroy`
   - Console logo in `ConsoleController@update` (quando si carica nuova immagine)
-  - User avatar in `UserController@changeAvatar` (rimuovere vecchio avatar)
-  - User avatar in `UserController@deleteAvatar`
+  - [ ] User avatar in `UserController@changeAvatar` (rimuovere vecchio avatar)
+  - [ ] User avatar in `UserController@deleteAvatar`
 
 **Esempio**:
 ```php
@@ -48,7 +48,7 @@ if($game->cover) {
 }
 ```
 
-**Motivo**: Attualmente i file rimangono in `storage/` anche dopo eliminazione record, sprecando spazio disco.
+**Motivo**: ~~Attualmente i file rimangono in `storage/` anche dopo eliminazione record, sprecando spazio disco.~~ **RISOLTO per Game e Console**
 
 ---
 
